@@ -6,21 +6,14 @@
 #include "imgui_impl_glfw.h"
 #include "imgui_impl_opengl3.h"
 #include "shader_loader.h"
+#include "physics.h"
 #include <string>
 #include <iostream>
-#include "random.h"
 
 inline void framebufferSizeCallback(GLFWwindow* window, int width, int height)
 {
 	glViewport(0, 0, width, height);
 }
-
-struct Vertex
-{
-	float x, y;
-	float r, g, b;
-	float radius;
-};
 
 class OpenGL
 {
@@ -83,7 +76,6 @@ public:
 		glDeleteShader(fragmentShader);
 
 		glEnable(GL_PROGRAM_POINT_SIZE);
-		glfwSwapInterval(0);
 
 		IMGUI_CHECKVERSION();
 		ImGui::CreateContext();
@@ -99,6 +91,9 @@ public:
 		glfwTerminate();
 	}
 
+	void disableVSYNC() { glfwSwapInterval(0); }
+	void enableVSYNC() { glfwSwapInterval(1); }
+
 	bool isAlive()
 	{
 		return !glfwWindowShouldClose(window);
@@ -110,15 +105,17 @@ public:
 			glfwSetWindowShouldClose(window, true);
 	}
 
-	void render(int numBalls)
+	void render(Simulation& simulation)
 	{
 		glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT);
 		int width, height; glfwGetFramebufferSize(window, &width, &height);
+		simulation.screenWidth = width;
+		simulation.screenHeight = height;
 		glUniform2f(glGetUniformLocation(shaderProgram, "uScreenDimensions"), (float)width, (float)height);
 		glUseProgram(shaderProgram);
 		glBindVertexArray(VAO);
-		glDrawArrays(GL_POINTS, 0, numBalls);
+		glDrawArrays(GL_POINTS, 0, simulation.numBalls);
 	}
 
 	void renderGUI(double renderTime)

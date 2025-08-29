@@ -1,5 +1,10 @@
 #pragma once
 
+#include <glad/glad.h>
+#include <GLFW/glfw3.h>
+#include "vec2f.h"
+#include "random.h"
+
 struct Ball
 {
 	Vec2f currPos;
@@ -16,19 +21,28 @@ struct Simulation
 	Ball* balls = nullptr;
 	Vertex* vertices = nullptr;
 
+	int stepsPerFrame = 8;
+	float deltaTime = 0.1f;
+	float sub_dt = 0.0f;
+	int screenWidth = -1;
+	int screenHeight = -1;
+
 	Simulation()
 	{
-		numBalls = 1000000;
+		numBalls = 100;
 		balls = new Ball[numBalls];
 		vertices = new Vertex[numBalls];
 		for (int i = 0; i < numBalls; i++)
 		{
 			Ball ball;
 			ball.currPos = randomVec2f(-1.0f, 1.0f);
+			ball.prevPos = ball.currPos + randomVec2f(-0.001f, 0.001f);
 			ball.color = randomColor3f();
-			ball.radius = 0.01f;
+			ball.radius = 0.05f;
 			balls[i] = ball;
 		}
+
+		sub_dt = deltaTime / stepsPerFrame;
 	}
 
 	~Simulation()

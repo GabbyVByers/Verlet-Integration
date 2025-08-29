@@ -107,7 +107,12 @@
     <ClInclude Include="imgui\imstb_rectpack.h" />
     <ClInclude Include="imgui\imstb_textedit.h" />
     <ClInclude Include="imgui\imstb_truetype.h" />
+    <ClInclude Include="opengl.h" />
+    <ClInclude Include="profiler.h" />
+    <ClInclude Include="random.h" />
     <ClInclude Include="shader_loader.h" />
+    <ClInclude Include="simulation.h" />
+    <ClInclude Include="vec2f.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="shader.frag" />

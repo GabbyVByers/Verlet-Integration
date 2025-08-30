@@ -118,14 +118,15 @@ public:
 		glDrawArrays(GL_POINTS, 0, simulation.numBalls);
 	}
 
-	void renderGUI(double renderTime)
+	void renderGUI(double renderTime, double physicsTime)
 	{
 		ImGui_ImplOpenGL3_NewFrame();
 		ImGui_ImplGlfw_NewFrame();
 		ImGui::NewFrame();
 
-		ImGui::Begin("Debugger");
-		ImGui::Text("Rendering Time (ms): %g", renderTime);
+		ImGui::Begin("Profiler");
+		ImGui::Text("Rendering (ms): %g", renderTime);
+		ImGui::Text("Physics   (ms): %g", physicsTime);
 		ImGui::End();
 
 		ImGui::Render();

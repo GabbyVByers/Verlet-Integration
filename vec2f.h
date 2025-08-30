@@ -40,3 +40,24 @@ struct Vec2f
 	}
 };
 
+inline float lengthSquared(const Vec2f& vec)
+{
+	return (vec.x * vec.x) + (vec.y * vec.y);
+}
+
+inline float length(const Vec2f& vec)
+{
+	return sqrt((vec.x * vec.x) + (vec.y * vec.y));
+}
+
+inline void normalize(Vec2f& vec)
+{
+	float len = length(vec);
+	vec.x = vec.x / len;
+	vec.y = vec.y / len;
+}
+
+inline float dot(const Vec2f& a, const Vec2f& b)
+{
+	return (a.x * b.x) + (a.y * b.y);
+}

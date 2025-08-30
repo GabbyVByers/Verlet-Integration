@@ -21,24 +21,29 @@ struct Simulation
 	Ball* balls = nullptr;
 	Vertex* vertices = nullptr;
 
+	float bounceDampening = 0.99f;
 	int stepsPerFrame = 8;
-	float deltaTime = 0.1f;
+	float deltaTime = 0.001f;
 	float sub_dt = 0.0f;
 	int screenWidth = -1;
 	int screenHeight = -1;
 
 	Simulation()
 	{
-		numBalls = 100;
+		numBalls = 1000;
 		balls = new Ball[numBalls];
 		vertices = new Vertex[numBalls];
 		for (int i = 0; i < numBalls; i++)
 		{
 			Ball ball;
 			ball.currPos = randomVec2f(-1.0f, 1.0f);
-			ball.prevPos = ball.currPos + randomVec2f(-0.001f, 0.001f);
+			Vec2f initVelocity = randomVec2f(-1.0f, 1.0f);
+			normalize(initVelocity);
+			ball.prevPos = ball.currPos + (initVelocity * 0.001f);
 			ball.color = randomColor3f();
-			ball.radius = 0.05f;
+			//ball.color = { 1.0f, 1.0f, 1.0f };
+			ball.radius = 0.02f;
+			ball.acceleration = { 0.0f, -50.0f };
 			balls[i] = ball;
 		}
 

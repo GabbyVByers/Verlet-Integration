@@ -19,9 +19,8 @@ struct Simulation
 {
 	int numBalls = -1;
 	Ball* balls = nullptr;
-	Vertex* vertices = nullptr;
 
-	float bounceDampening = 0.99f;
+	float bounceDampening = 1.0f;
 	int stepsPerFrame = 8;
 	float deltaTime = 0.001f;
 	float sub_dt = 0.0f;
@@ -32,7 +31,6 @@ struct Simulation
 	{
 		numBalls = 1000;
 		balls = new Ball[numBalls];
-		vertices = new Vertex[numBalls];
 		for (int i = 0; i < numBalls; i++)
 		{
 			Ball ball;
@@ -41,9 +39,8 @@ struct Simulation
 			normalize(initVelocity);
 			ball.prevPos = ball.currPos + (initVelocity * 0.001f);
 			ball.color = randomColor3f();
-			//ball.color = { 1.0f, 1.0f, 1.0f };
 			ball.radius = 0.02f;
-			ball.acceleration = { 0.0f, -50.0f };
+			ball.acceleration = { 0.0f, 0.0f };
 			balls[i] = ball;
 		}
 
@@ -53,18 +50,6 @@ struct Simulation
 	~Simulation()
 	{
 		delete[] balls;
-		delete[] vertices;
 	}
 };
-
-inline void buildAndShipVertices(Simulation& simulation)
-{
-	for (int i = 0; i < simulation.numBalls; i++)
-	{
-		Ball& ball = simulation.balls[i];
-		Vertex vert = { ball.currPos.x, ball.currPos.y, ball.color.r, ball.color.g, ball.color.b, ball.radius };
-		simulation.vertices[i] = vert;
-	}
-	glBufferData(GL_ARRAY_BUFFER, sizeof(Vertex) * simulation.numBalls, simulation.vertices, GL_STATIC_DRAW);
-}
 

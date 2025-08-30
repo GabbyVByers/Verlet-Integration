@@ -7,13 +7,6 @@ struct Color3f
 	float b = 1.0f;
 };
 
-struct Vertex
-{
-	float x, y;
-	float r, g, b;
-	float radius;
-};
-
 struct Vec2f
 {
 	float x = 0.0f;

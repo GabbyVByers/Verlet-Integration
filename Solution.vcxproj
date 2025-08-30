@@ -85,6 +85,10 @@
     </CudaCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="circle_opengl.cpp" />
+    <ClCompile Include="gui.cpp" />
+    <ClCompile Include="opengl_utilities.cpp" />
+    <ClCompile Include="user_input.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>

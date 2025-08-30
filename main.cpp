@@ -4,7 +4,7 @@
 
 int main()
 {
-	OpenGL OpenGL(1080, 1080, "Verlet Integration");
+	OpenGL OpenGL(1920, 1080, "Verlet Integration");
 	OpenGL.disableVSYNC();
 
 	Simulation simulation;
@@ -17,8 +17,8 @@ int main()
 	while (OpenGL.isAlive())
 	{
 		renderingProfiler.start(); {
-			buildAndShipVertices(simulation);
-			OpenGL.render(simulation);
+			OpenGL.startRender(simulation);
+			OpenGL.renderCircles(simulation);
 			OpenGL.renderGUI(renderingTime, physicsTime);
 			OpenGL.swapBuffers();
 		} renderingProfiler.stop();

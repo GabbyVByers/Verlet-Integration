@@ -85,8 +85,9 @@
     </CudaCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="circle_opengl.cpp" />
+    <ClCompile Include="circle_rendering.cpp" />
     <ClCompile Include="gui.cpp" />
+    <ClCompile Include="line_rendering.cpp" />
     <ClCompile Include="opengl_utilities.cpp" />
     <ClCompile Include="user_input.cpp" />
     <ClCompile Include="main.cpp" />
@@ -120,8 +121,10 @@
     <ClInclude Include="vec2f.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="shader.frag" />
-    <None Include="shader.vert" />
+    <None Include="circle_shader.frag" />
+    <None Include="circle_shader.vert" />
+    <None Include="line_shader.frag" />
+    <None Include="line_shader.vert" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

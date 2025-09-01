@@ -33,7 +33,6 @@ inline void walls(Simulation& simulation)
 {
 	Ball* balls = simulation.balls;
 	float dt = simulation.sub_dt;
-	float aspectRatio = (float)simulation.screenWidth / (float)simulation.screenHeight;
 
 	for (int i = 0; i < simulation.numBalls; i++)
 	{
@@ -57,21 +56,21 @@ inline void walls(Simulation& simulation)
 			setVelocity(ball, velocity, dt);
 		}
 
-		if (ball.currPos.x + ball.radius > aspectRatio) // right wall
+		if (ball.currPos.x + ball.radius > simulation.max_u) // right wall
 		{
 			Vec2f velocity = getVelocity(ball, dt);
 			velocity.x = -1.0f * fabs(velocity.x);
 			velocity = velocity * simulation.bounceDampening;
-			ball.currPos.x = aspectRatio - ball.radius;
+			ball.currPos.x = simulation.max_u - ball.radius;
 			setVelocity(ball, velocity, dt);
 		}
 
-		if (ball.currPos.x - ball.radius < (-1.0 * aspectRatio)) // left wall
+		if (ball.currPos.x - ball.radius < (-1.0 * simulation.max_u)) // left wall
 		{
 			Vec2f velocity = getVelocity(ball, dt);
 			velocity.x = fabs(velocity.x);
 			velocity = velocity * simulation.bounceDampening;
-			ball.currPos.x = (-1.0 * aspectRatio) + ball.radius;
+			ball.currPos.x = (-1.0 * simulation.max_u) + ball.radius;
 			setVelocity(ball, velocity, dt);
 		}
 	}

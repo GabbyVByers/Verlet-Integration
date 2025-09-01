@@ -9,22 +9,21 @@
 #include "physics.h"
 #include <string>
 #include <iostream>
-
-struct Vertex
-{
-	float x, y;
-	float r, g, b;
-	float radius;
-};
+#include <vector>
 
 class OpenGL
 {
 public:
 
 	GLFWwindow* window = nullptr;
-	unsigned int shaderProgram;
-	unsigned int VAO;
-	unsigned int VBO;
+	
+	unsigned int circleShaderProgram;
+	unsigned int circleVAO;
+	unsigned int circleVBO;
+
+	unsigned int lineShaderProgram;
+	unsigned int lineVAO;
+	unsigned int lineVBO;
 
 	// Utilities
 	OpenGL(int initWidth, int initHeight, std::string title);
@@ -32,12 +31,16 @@ public:
 	bool isAlive();
 	void disableVSYNC();
 	void enableVSYNC();
-	void startRender(Simulation& simulation);
+	void clearScreen(Simulation& simulation);
 	void swapBuffers();
 
-	// Circles
+	// Circle Rendering
 	void initCircleRendering();
 	void renderCircles(Simulation& simulation);
+	
+	// Line Rendering
+	void initLineRendering();
+	void renderLines(Simulation& simulation);
 
 	// GUI
 	void initImGui() const;

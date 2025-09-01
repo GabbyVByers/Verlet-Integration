@@ -21,14 +21,15 @@ OpenGL::OpenGL(int initWidth, int initHeight, std::string title)
 	glfwSetFramebufferSizeCallback(window, framebufferSizeCallback);
 
 	initCircleRendering();
+	initLineRendering();
 	initImGui();
 }
 
 OpenGL::~OpenGL()
 {
-	glDeleteVertexArrays(1, &VAO);
-	glDeleteBuffers(1, &VBO);
-	glDeleteProgram(shaderProgram);
+	glDeleteVertexArrays(1, &circleVAO);
+	glDeleteBuffers(1, &circleVBO);
+	glDeleteProgram(circleShaderProgram);
 	glfwTerminate();
 }
 
@@ -47,14 +48,15 @@ void OpenGL::enableVSYNC()
 	glfwSwapInterval(1);
 }
 
-void OpenGL::startRender(Simulation& simulation)
+void OpenGL::clearScreen(Simulation& simulation)
 {
 	glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 	glClear(GL_COLOR_BUFFER_BIT);
+
 	int width, height; glfwGetFramebufferSize(window, &width, &height);
 	simulation.screenWidth = width;
 	simulation.screenHeight = height;
-	glUniform2f(glGetUniformLocation(shaderProgram, "uScreenDimensions"), (float)width, (float)height);
+	simulation.max_u = (float)width / (float)height;
 }
 
 void OpenGL::swapBuffers()

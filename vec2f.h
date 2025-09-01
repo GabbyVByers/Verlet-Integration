@@ -54,3 +54,4 @@ inline float dot(const Vec2f& a, const Vec2f& b)
 {
 	return (a.x * b.x) + (a.y * b.y);
 }
+

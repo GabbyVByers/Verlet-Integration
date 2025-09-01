@@ -15,15 +15,20 @@ struct Ball
 	Color3f color;
 };
 
-struct Simulation
+class Simulation
 {
+public:
+
 	int numBalls = -1;
 	Ball* balls = nullptr;
 
-	float bounceDampening = 1.0f;
+	float gridWidth = 0.05f;
+	float bounceDampening = 0.99f;
 	int stepsPerFrame = 8;
 	float deltaTime = 0.001f;
 	float sub_dt = 0.0f;
+
+	float max_u = 0.0f;
 	int screenWidth = -1;
 	int screenHeight = -1;
 
@@ -39,8 +44,9 @@ struct Simulation
 			normalize(initVelocity);
 			ball.prevPos = ball.currPos + (initVelocity * 0.001f);
 			ball.color = randomColor3f();
-			ball.radius = 0.02f;
-			ball.acceleration = { 0.0f, 0.0f };
+			ball.radius = gridWidth / 2.0f;
+			ball.mass = ball.radius * ball.radius;
+			ball.acceleration = { 0.0f, -50.0f };
 			balls[i] = ball;
 		}
 

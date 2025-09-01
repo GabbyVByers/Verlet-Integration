@@ -48,7 +48,7 @@
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="circle_opengl.cpp">
+    <ClCompile Include="circle_rendering.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="gui.cpp">
@@ -58,6 +58,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="opengl_utilities.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="line_rendering.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -112,10 +115,16 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="shader.vert">
+    <None Include="circle_shader.vert">
       <Filter>Shaders</Filter>
     </None>
-    <None Include="shader.frag">
+    <None Include="circle_shader.frag">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="line_shader.frag">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="line_shader.vert">
       <Filter>Shaders</Filter>
     </None>
   </ItemGroup>

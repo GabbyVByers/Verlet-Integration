@@ -22,6 +22,14 @@ Simulation::Simulation()
 		ball.acceleration = { 0.0f, -50.0f };
 		balls[i] = ball;
 	}
+
+	for (int i = 0; i < numBalls; i++)
+	{
+		BallCellKeyPair ballCellKey;
+		ballCellKey.ballIndex = i;
+		ballCellKey.cellKey = keyFromHash(hashCell(getCellIdFromPosition(balls[i].currPos)));
+		ballKeyPairs[i] = ballCellKey;
+	}
 }
 
 Simulation::~Simulation()

@@ -25,10 +25,8 @@ void Simulation::buildSpatialPartition()
 	ballKeysProfiler.start();
 	for (int i = 0; i < numBalls; i++)
 	{
-		BallCellKeyPair ballCellKey;
-		ballCellKey.ballIndex = i;
-		ballCellKey.cellKey = keyFromHash(hashCell(getCellIdFromPosition(balls[i].currPos)));
-		ballKeyPairs[i] = ballCellKey;
+		BallCellKeyPair& ballCellKey = ballKeyPairs[i];
+		ballCellKey.cellKey = keyFromHash(hashCell(getCellIdFromPosition(balls[ballCellKey.ballIndex].currPos)));
 	}
 
 	while (true)

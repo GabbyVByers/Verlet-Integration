@@ -54,3 +54,4 @@ inline void buildSpatialPartition(Simulation& simulation)
 
 	delete[] ballCellKeys;
 }
+

@@ -37,7 +37,7 @@ struct CellProperties
 class Simulation
 {
 public:
-	int numBalls = 1000;
+	int numBalls = 1700;
 	Ball* balls = nullptr;
 
 	float bounceDampening = 0.99f;
@@ -49,9 +49,9 @@ public:
 	int screenWidth = -1;
 	int screenHeight = -1;
 
-	bool doSpatialPartitioning = false;
-	float gridWidth = 0.055f;
-	int numUniqueCellKeys = 5000;
+	bool doSpatialPartitioning = true;
+	float gridWidth = 0.05f;
+	int numUniqueCellKeys = 100000;
 	BallCellKeyPair* ballKeyPairs = nullptr;
 	CellProperties* startIndices = nullptr;
 

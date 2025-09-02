@@ -88,7 +88,7 @@ void Simulation::resolveCollision(Ball& ball, Ball& otherBall)
 	Vec2f newV2 = V2 - ((P2 - P1) * (((2.0f * M1) / Mass) * (dot(V2 - V1, P2 - P1) / lengthSquared(P2 - P1))));
 	newV1 = newV1 * bounceDampening;
 	newV2 = newV2 * bounceDampening;
-
+	
 	setVelocity(ball, newV1);
 	setVelocity(otherBall, newV2);
 

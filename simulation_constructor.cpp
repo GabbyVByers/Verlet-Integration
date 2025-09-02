@@ -5,8 +5,10 @@ Simulation::Simulation()
 {
 	ballKeyPairs = new BallCellKeyPair[numBalls];
 	startIndices = new CellProperties[numUniqueCellKeys];
-
+	max_u = (float)screenWidth / (float)screenHeight;
 	balls = new Ball[numBalls];
+	sub_dt = deltaTime / stepsPerFrame;
+
 	for (int i = 0; i < numBalls; i++)
 	{
 		Ball ball;
@@ -20,8 +22,6 @@ Simulation::Simulation()
 		ball.acceleration = { 0.0f, -50.0f };
 		balls[i] = ball;
 	}
-
-	sub_dt = deltaTime / stepsPerFrame;
 }
 
 Simulation::~Simulation()
@@ -30,4 +30,3 @@ Simulation::~Simulation()
 	delete[] startIndices;
 	delete[] balls;
 }
-

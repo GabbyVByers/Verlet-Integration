@@ -1,6 +1,6 @@
 #pragma once
 
-#include "partition.h"
+#include "simulation.h"
 
 inline Vec2f getVelocity(Ball& ball, float dt)
 {

@@ -37,12 +37,6 @@
     <Filter Include="Miscellaneous Dependencies\ImGui Sources">
       <UniqueIdentifier>{83b6c6f7-af5b-4070-bf2e-c3dcafda1f2b}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Modules\Profiler\Header File">
-      <UniqueIdentifier>{4c8a1968-b9be-4896-ab5e-e9da04362eaa}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Modules\Profiler\Source Files">
-      <UniqueIdentifier>{4f0c7683-e236-4ed1-8483-2e7e5641bcaa}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="imgui\imgui_demo.cpp">
@@ -88,7 +82,7 @@
       <Filter>Miscellaneous Dependencies</Filter>
     </ClCompile>
     <ClCompile Include="profiler.cpp">
-      <Filter>Modules\Profiler\Source Files</Filter>
+      <Filter>Modules\Profiler</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -128,7 +122,7 @@
     <ClInclude Include="physics.h">
       <Filter>Modules\Simulation</Filter>
     </ClInclude>
-    <ClInclude Include="partition.h">
+    <ClInclude Include="partition.cpp">
       <Filter>Modules\Simulation</Filter>
     </ClInclude>
     <ClInclude Include="vec2f.h">
@@ -138,7 +132,7 @@
       <Filter>Modules\Utilities</Filter>
     </ClInclude>
     <ClInclude Include="profiler.h">
-      <Filter>Modules\Profiler\Header File</Filter>
+      <Filter>Modules\Profiler</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

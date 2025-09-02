@@ -3,13 +3,7 @@
 #include "simulation.h"
 #include "vec2f.h"
 
-struct cellID
-{
-	int cellX = 0;
-	int cellY = 0;
-};
-
-inline cellID getCellIdFromPosition(Simulation& simulation, Vec2f position)
+cellID Simulation::getCellIdFromPosition(Simulation& simulation, Vec2f position)
 {
 	float width = simulation.gridWidth;
 	int cellX = (position.x > 0.0f) ? ((position.x + (width * 0.5f)) / width) : ((position.x - (width * 0.5f)) / width);
@@ -17,25 +11,19 @@ inline cellID getCellIdFromPosition(Simulation& simulation, Vec2f position)
 	return { cellX, cellY };
 }
 
-struct ballCellKeyPair
-{
-	int ballIndex = -1;
-	unsigned int cellKey = 0;
-};
-
-inline unsigned int hashCell(cellID cellId)
+unsigned int Simulation::hashCell(cellID cellId)
 {
 	unsigned int a = (unsigned int)cellId.cellX * 15823;
 	unsigned int b = (unsigned int)cellId.cellY * 9737333;
 	return a + b;
 }
 
-inline unsigned int keyFromHash(unsigned int hash, int numCells)
+unsigned int Simulation::keyFromHash(unsigned int hash, int numCells)
 {
 	return hash % (unsigned int)numCells;
 }
 
-inline void buildSpatialPartition(Simulation& simulation)
+void Simulation::buildSpatialPartition(Simulation& simulation)
 {
 	ballCellKeyPair* ballCellKeys = nullptr;
 	ballCellKeys = new ballCellKeyPair[simulation.numBalls];

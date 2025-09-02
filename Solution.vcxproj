@@ -114,7 +114,7 @@
     <ClInclude Include="imgui\imstb_textedit.h" />
     <ClInclude Include="imgui\imstb_truetype.h" />
     <ClInclude Include="opengl.h" />
-    <ClInclude Include="partition.h" />
+    <ClInclude Include="partition.cpp" />
     <ClInclude Include="physics.h" />
     <ClInclude Include="profiler.h" />
     <ClInclude Include="random.h" />

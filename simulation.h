@@ -15,6 +15,18 @@ struct Ball
 	Color3f color;
 };
 
+struct cellID
+{
+	int cellX = 0;
+	int cellY = 0;
+};
+
+struct ballCellKeyPair
+{
+	int ballIndex = -1;
+	unsigned int cellKey = 0;
+};
+
 class Simulation
 {
 public:
@@ -56,5 +68,12 @@ public:
 	{
 		delete[] balls;
 	}
+
+	// Spatial Partitioning
+	cellID getCellIdFromPosition(Simulation& simulation, Vec2f position);
+	unsigned int hashCell(cellID cellId);
+	unsigned int keyFromHash(unsigned int hash, int numCells);
+	void buildSpatialPartition(Simulation& simulation);
+
 };
 

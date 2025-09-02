@@ -1,9 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Main">
-      <UniqueIdentifier>{1d72b084-b316-4b06-b793-48b4e2724837}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Modules">
       <UniqueIdentifier>{0cc86e25-00a6-4622-823d-7cf1d1b13a91}</UniqueIdentifier>
     </Filter>
@@ -54,9 +51,6 @@
     <ClCompile Include="imgui\imgui.cpp">
       <Filter>Miscellaneous Dependencies\ImGui Sources</Filter>
     </ClCompile>
-    <ClCompile Include="main.cpp">
-      <Filter>Main</Filter>
-    </ClCompile>
     <ClCompile Include="glad.c">
       <Filter>Miscellaneous Dependencies</Filter>
     </ClCompile>
@@ -87,6 +81,7 @@
     <ClCompile Include="opengl_circles.cpp">
       <Filter>Modules\OpenGL</Filter>
     </ClCompile>
+    <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="imgui\imconfig.h">
@@ -130,6 +125,9 @@
     </ClInclude>
     <ClInclude Include="opengl.h">
       <Filter>Modules\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="color3f.h">
+      <Filter>Modules\Utilities</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

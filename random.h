@@ -1,6 +1,7 @@
 #pragma once
 
 #include "vec2f.h"
+#include "color3f.h"
 #include <cmath>
 
 inline float randomFloat(float min, float max)

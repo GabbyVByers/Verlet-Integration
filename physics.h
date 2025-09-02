@@ -1,7 +1,6 @@
 #pragma once
 
-#include "simulation.h"
-#include "vec2f.h"
+#include "partition.h"
 
 inline Vec2f getVelocity(Ball& ball, float dt)
 {
@@ -133,19 +132,5 @@ inline void update(Simulation& simulation)
 		walls(simulation);
 		collisions(simulation);
 	}
-}
-
-struct cellID
-{
-	int cellX = 0;
-	int cellY = 0;
-};
-
-inline cellID getCellIdFromPosition(Simulation& simulation, Vec2f position)
-{
-	float width = simulation.gridWidth;
-	int cellX = (position.x > 0.0f) ? ((position.x + (width * 0.5f)) / width) : ((position.x - (width * 0.5f)) / width);
-	int cellY = (position.y > 0.0f) ? ((position.y + (width * 0.5f)) / width) : ((position.y - (width * 0.5f)) / width);
-	return { cellX, cellY };
 }
 

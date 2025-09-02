@@ -19,7 +19,7 @@ class Simulation
 {
 public:
 
-	int numBalls = 0;
+	int numBalls = 100;
 	Ball* balls = nullptr;
 
 	float bounceDampening = 0.99f;

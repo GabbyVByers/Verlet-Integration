@@ -37,15 +37,15 @@ bool OpenGL::isAlive() { return !glfwWindowShouldClose(window); }
 void OpenGL::disableVSYNC() { glfwSwapInterval(0); }
 void OpenGL::enableVSYNC()  { glfwSwapInterval(1); }
 
-void OpenGL::clearScreen(Simulation& simulation)
+void OpenGL::clearScreen()
 {
 	glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 	glClear(GL_COLOR_BUFFER_BIT);
 
 	int width, height; glfwGetFramebufferSize(window, &width, &height);
-	simulation.screenWidth = width;
-	simulation.screenHeight = height;
-	simulation.max_u = (float)width / (float)height;
+	simulation->screenWidth = width;
+	simulation->screenHeight = height;
+	simulation->max_u = (float)width / (float)height;
 }
 
 void OpenGL::swapBuffers()
@@ -61,3 +61,4 @@ std::string OpenGL::loadSourceFile(std::string filePath)
 	buffer << shaderFile.rdbuf();
 	return buffer.str();
 }
+

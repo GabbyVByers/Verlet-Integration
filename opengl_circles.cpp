@@ -48,21 +48,21 @@ void OpenGL::initCircleRendering()
 	glEnable(GL_PROGRAM_POINT_SIZE);
 }
 
-void OpenGL::renderCircles(Simulation& simulation)
+void OpenGL::renderCircles()
 {
 	glBindVertexArray(circleVAO);
 	glBindBuffer(GL_ARRAY_BUFFER, circleVBO);
 	glUseProgram(circleShaderProgram);
 
 	std::vector<CircleVertex> circleVertices;
-	for (int i = 0; i < simulation.numBalls; i++)
+	for (int i = 0; i < simulation->numBalls; i++)
 	{
-		Ball& ball = simulation.balls[i];
+		Ball& ball = simulation->balls[i];
 		circleVertices.push_back({ ball.currPos.x, ball.currPos.y, ball.color.r, ball.color.g, ball.color.b, ball.radius });
 	}
 	
-	glBufferData(GL_ARRAY_BUFFER, sizeof(CircleVertex) * simulation.numBalls, &circleVertices[0], GL_STATIC_DRAW);
-	glUniform2f(glGetUniformLocation(circleShaderProgram, "uScreenDimensions"), (float)simulation.screenWidth, (float)simulation.screenHeight);
-	glDrawArrays(GL_POINTS, 0, (GLsizei)simulation.numBalls);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(CircleVertex) * simulation->numBalls, &circleVertices[0], GL_STATIC_DRAW);
+	glUniform2f(glGetUniformLocation(circleShaderProgram, "uScreenDimensions"), (float)simulation->screenWidth, (float)simulation->screenHeight);
+	glDrawArrays(GL_POINTS, 0, (GLsizei)simulation->numBalls);
 }
 

@@ -4,10 +4,10 @@
 
 int main()
 {
-	OpenGL OpenGL(1920, 1080, "Verlet Integration");
-	OpenGL.disableVSYNC();
-
+	OpenGL OpenGL(1920, 1080, "Verlet Integration"); OpenGL.disableVSYNC();
 	Simulation simulation;
+
+	OpenGL.simulation = &simulation;
 
 	Profiler renderingProfiler;
 	Profiler physicsProfiler;
@@ -17,10 +17,10 @@ int main()
 	while (OpenGL.isAlive())
 	{
 		renderingProfiler.start(); {
-			OpenGL.processInput(simulation);
-			OpenGL.clearScreen(simulation);
-			OpenGL.renderLines(simulation);
-			OpenGL.renderCircles(simulation);
+			OpenGL.processInput();
+			OpenGL.clearScreen();
+			OpenGL.renderLines();
+			OpenGL.renderCircles();
 			OpenGL.renderGUI(renderingTime, physicsTime);
 			OpenGL.swapBuffers();
 		} renderingProfiler.stop();

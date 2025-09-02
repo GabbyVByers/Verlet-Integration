@@ -45,15 +45,15 @@ void OpenGL::initLineRendering()
 	glEnable(GL_PROGRAM_POINT_SIZE);
 }
 
-void OpenGL::renderLines(Simulation& simulation)
+void OpenGL::renderLines()
 {
 	glBindVertexArray(lineVAO);
 	glBindBuffer(GL_ARRAY_BUFFER, lineVBO);
 	glUseProgram(lineShaderProgram);
 
 	std::vector<LineVertex> lineVertices;
-	float max_u = simulation.max_u;
-	float gridWidth = simulation.gridWidth;
+	float max_u = simulation->max_u;
+	float gridWidth = simulation->gridWidth;
 
 	lineVertices.push_back({ -max_u,  0.0f, 1.0f, 1.0f, 1.0f });
 	lineVertices.push_back({  max_u,  0.0f, 1.0f, 1.0f, 1.0f });
@@ -92,7 +92,7 @@ void OpenGL::renderLines(Simulation& simulation)
 	lineVertices.push_back({  0.04f,  0.999f, 1.0f, 1.0f, 1.0f });
 
 	glBufferData(GL_ARRAY_BUFFER, sizeof(LineVertex) * lineVertices.size(), &lineVertices[0], GL_STATIC_DRAW);
-	glUniform2f(glGetUniformLocation(lineShaderProgram, "uScreenDimensions"), (float)simulation.screenWidth, (float)simulation.screenHeight);
+	glUniform2f(glGetUniformLocation(lineShaderProgram, "uScreenDimensions"), (float)simulation->screenWidth, (float)simulation->screenHeight);
 	glDrawArrays(GL_LINES, 0, (GLsizei)lineVertices.size());
 }
 

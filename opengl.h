@@ -18,6 +18,7 @@ class OpenGL
 public:
 
 	GLFWwindow* window = nullptr;
+	Simulation* simulation = nullptr;
 	
 	unsigned int circleShaderProgram;
 	unsigned int circleVAO;
@@ -33,24 +34,24 @@ public:
 	bool isAlive();
 	void disableVSYNC();
 	void enableVSYNC();
-	void clearScreen(Simulation& simulation);
+	void clearScreen();
 	void swapBuffers();
 	std::string loadSourceFile(std::string filePath);
 
 	// Circle Rendering
 	void initCircleRendering();
-	void renderCircles(Simulation& simulation);
+	void renderCircles();
 	
 	// Line Rendering
 	void initLineRendering();
-	void renderLines(Simulation& simulation);
+	void renderLines();
 
 	// GUI
 	void initImGui() const;
 	void renderGUI(double renderTime, double physicsTime);
 
 	// User Input
-	Vec2f getMousePosition(Simulation& simulation);
-	void processInput(Simulation& simulation);
+	Vec2f getMousePosition();
+	void processInput();
 };
 

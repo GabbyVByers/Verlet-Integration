@@ -30,7 +30,6 @@ struct ballCellKeyPair
 class Simulation
 {
 public:
-
 	int numBalls = 100;
 	Ball* balls = nullptr;
 

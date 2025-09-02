@@ -1,14 +1,14 @@
 
 #include "simulation.h"
 
-cellID Simulation::getCellIdFromPosition(Vec2f position)
+CellID Simulation::getCellIdFromPosition(Vec2f position)
 {
 	int cellX = (position.x > 0.0f) ? ((position.x + (gridWidth * 0.5f)) / gridWidth) : ((position.x - (gridWidth * 0.5f)) / gridWidth);
 	int cellY = (position.y > 0.0f) ? ((position.y + (gridWidth * 0.5f)) / gridWidth) : ((position.y - (gridWidth * 0.5f)) / gridWidth);
 	return { cellX, cellY };
 }
 
-unsigned int Simulation::hashCell(cellID cellId)
+unsigned int Simulation::hashCell(CellID cellId)
 {
 	unsigned int a = (unsigned int)cellId.cellX * 15823;
 	unsigned int b = (unsigned int)cellId.cellY * 9737333;

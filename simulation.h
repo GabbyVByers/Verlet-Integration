@@ -16,7 +16,7 @@ struct Ball
 	float mass = 0.0f;
 };
 
-struct cellID
+struct CellID
 {
 	int cellX = 0;
 	int cellY = 0;
@@ -49,16 +49,17 @@ public:
 	int screenWidth = -1;
 	int screenHeight = -1;
 
-	float gridWidth = 0.02f;
-	int numUniqueCellKeys = 40;
+	bool doSpatialPartitioning = false;
+	float gridWidth = 0.055f;
+	int numUniqueCellKeys = 5000;
 	BallCellKeyPair* ballKeyPairs = nullptr;
 	CellProperties* startIndices = nullptr;
 
 	Simulation();
 	~Simulation();
 
-	cellID getCellIdFromPosition(Vec2f position);
-	unsigned int hashCell(cellID cellId);
+	CellID getCellIdFromPosition(Vec2f position);
+	unsigned int hashCell(CellID cellId);
 	unsigned int keyFromHash(unsigned int hash);
 	void buildSpatialPartition();
 
@@ -67,6 +68,7 @@ public:
 	void step();
 	void walls();
 	void collisions();
+	void resolveCollision(Ball& ball, Ball& other);
 	void update();
 };
 

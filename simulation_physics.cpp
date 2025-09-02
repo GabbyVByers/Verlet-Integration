@@ -74,6 +74,14 @@ void Simulation::collisions()
 	{
 		Ball& ball = balls[i];
 
+		for (int offsetx = -1; offsetx < 2; offsetx++)
+		{
+			for (int offsety = -1; offsety < 2; offsety++)
+			{
+
+			}
+		}
+
 		for (int j = 0; j < numBalls; j++)
 		{
 			if (i == j) continue;
@@ -117,6 +125,7 @@ void Simulation::update()
 {
 	for (int i = 0; i < stepsPerFrame; i++)
 	{
+		buildSpatialPartition();
 		step();
 		walls();
 		collisions();

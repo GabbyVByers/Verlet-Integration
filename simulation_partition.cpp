@@ -1,11 +1,10 @@
 
 #include "simulation.h"
 
-cellID Simulation::getCellIdFromPosition(Simulation& simulation, Vec2f position)
+cellID Simulation::getCellIdFromPosition(Vec2f position)
 {
-	float width = simulation.gridWidth;
-	int cellX = (position.x > 0.0f) ? ((position.x + (width * 0.5f)) / width) : ((position.x - (width * 0.5f)) / width);
-	int cellY = (position.y > 0.0f) ? ((position.y + (width * 0.5f)) / width) : ((position.y - (width * 0.5f)) / width);
+	int cellX = (position.x > 0.0f) ? ((position.x + (gridWidth * 0.5f)) / gridWidth) : ((position.x - (gridWidth * 0.5f)) / gridWidth);
+	int cellY = (position.y > 0.0f) ? ((position.y + (gridWidth * 0.5f)) / gridWidth) : ((position.y - (gridWidth * 0.5f)) / gridWidth);
 	return { cellX, cellY };
 }
 
@@ -16,28 +15,54 @@ unsigned int Simulation::hashCell(cellID cellId)
 	return a + b;
 }
 
-unsigned int Simulation::keyFromHash(unsigned int hash, int numCells)
+unsigned int Simulation::keyFromHash(unsigned int hash)
 {
-	return hash % (unsigned int)numCells;
+	return hash % (unsigned int)numUniqueCellKeys;
 }
 
-void Simulation::buildSpatialPartition(Simulation& simulation)
+void Simulation::buildSpatialPartition()
 {
-	ballCellKeyPair* ballCellKeys = nullptr;
-	ballCellKeys = new ballCellKeyPair[simulation.numBalls];
-
-	int numCells = 1000;
-
-	for (int i = 0; i < simulation.numBalls; i++)
+	for (int i = 0; i < numBalls; i++)
 	{
-		ballCellKeyPair ballCellKey;
+		BallCellKeyPair ballCellKey;
 		ballCellKey.ballIndex = i;
-		ballCellKey.cellKey = keyFromHash(hashCell(getCellIdFromPosition(simulation, simulation.balls[i].currPos)), numCells);
-		ballCellKeys[i] = ballCellKey;
+		ballCellKey.cellKey = keyFromHash(hashCell(getCellIdFromPosition(balls[i].currPos)));
+		ballKeyPairs[i] = ballCellKey;
 	}
 
+	while (true)
+	{
+		bool isSorted = true;
+		for (int i = 0; i < (numBalls - 1); i++)
+		{
+			BallCellKeyPair& curr = ballKeyPairs[i];
+			BallCellKeyPair& next = ballKeyPairs[i + 1];
+			if (curr.cellKey > next.cellKey)
+			{
+				isSorted = false;
+				BallCellKeyPair temp = curr;
+				curr = next;
+				next = temp;
+			}
+		}
 
+		if (isSorted)
+			break;
+	}
 
-	delete[] ballCellKeys;
+	for (int i = 0; i < numUniqueCellKeys; i++)
+	{
+		CellProperties cellProperty;
+		startIndices[i] = cellProperty;
+	}
+
+	for (int i = 0; i < numBalls; i++)
+	{
+		BallCellKeyPair& curr = ballKeyPairs[i];
+		CellProperties& cellProperty = startIndices[curr.cellKey];
+		if (cellProperty.size == 0)
+			cellProperty.startIndex = i;
+		cellProperty.size++;
+	}
 }
 

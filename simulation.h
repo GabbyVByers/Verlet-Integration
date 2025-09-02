@@ -4,6 +4,7 @@
 #include <GLFW/glfw3.h>
 #include "vec2f.h"
 #include "random.h"
+#include <iostream>
 
 struct Ball
 {
@@ -21,16 +22,22 @@ struct cellID
 	int cellY = 0;
 };
 
-struct ballCellKeyPair
+struct BallCellKeyPair
 {
 	int ballIndex = -1;
 	unsigned int cellKey = 0;
 };
 
+struct CellProperties
+{
+	int startIndex = -1;
+	int size = 0;
+};
+
 class Simulation
 {
 public:
-	int numBalls = 100;
+	int numBalls = 1000;
 	Ball* balls = nullptr;
 
 	float bounceDampening = 0.99f;
@@ -39,17 +46,21 @@ public:
 	float sub_dt = 0.0f;
 
 	float max_u = 0.0f;
-	float gridWidth = 0.25f;
 	int screenWidth = -1;
 	int screenHeight = -1;
+
+	float gridWidth = 0.02f;
+	int numUniqueCellKeys = 40;
+	BallCellKeyPair* ballKeyPairs = nullptr;
+	CellProperties* startIndices = nullptr;
 
 	Simulation();
 	~Simulation();
 
-	cellID getCellIdFromPosition(Simulation& simulation, Vec2f position);
+	cellID getCellIdFromPosition(Vec2f position);
 	unsigned int hashCell(cellID cellId);
-	unsigned int keyFromHash(unsigned int hash, int numCells);
-	void buildSpatialPartition(Simulation& simulation);
+	unsigned int keyFromHash(unsigned int hash);
+	void buildSpatialPartition();
 
 	Vec2f getVelocity(Ball& ball);
 	void setVelocity(Ball& ball, Vec2f& velocity);

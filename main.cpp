@@ -4,10 +4,10 @@
 
 int main()
 {
-	OpenGL OpenGL(1920, 1080, "Verlet Integration"); OpenGL.disableVSYNC();
 	Simulation simulation;
-
+	OpenGL OpenGL(1920, 1080, "Verlet Integration");
 	OpenGL.simulation = &simulation;
+	OpenGL.disableVSYNC();
 
 	Profiler renderingProfiler;
 	Profiler physicsProfiler;

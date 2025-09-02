@@ -1,5 +1,7 @@
 #pragma once
 
+#include <cmath>
+
 struct Color3f
 {
 	float r = 1.0f;

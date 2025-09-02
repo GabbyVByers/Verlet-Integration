@@ -91,7 +91,7 @@
     <ClCompile Include="opengl_utilities.cpp" />
     <ClCompile Include="opengl_input.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="profiler.cpp" />
+    <ClCompile Include="profiler_members.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="glad.c" />
@@ -114,8 +114,12 @@
     <ClInclude Include="imgui\imstb_textedit.h" />
     <ClInclude Include="imgui\imstb_truetype.h" />
     <ClInclude Include="opengl.h" />
-    <ClInclude Include="partition.cpp" />
-    <ClInclude Include="physics.h" />
+    <ClCompile Include="simulation_constructor.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="simulation_partition.cpp" />
+    <ClCompile Include="simulation_physics.cpp" />
     <ClInclude Include="profiler.h" />
     <ClInclude Include="random.h" />
     <ClInclude Include="simulation.h" />

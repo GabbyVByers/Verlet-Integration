@@ -10,9 +10,9 @@ struct Ball
 	Vec2f currPos;
 	Vec2f prevPos;
 	Vec2f acceleration;
-	float radius;
-	float mass;
 	Color3f color;
+	float radius = 0.0f;
+	float mass = 0.0f;
 };
 
 struct cellID
@@ -44,36 +44,19 @@ public:
 	int screenWidth = -1;
 	int screenHeight = -1;
 
-	Simulation()
-	{
-		balls = new Ball[numBalls];
-		for (int i = 0; i < numBalls; i++)
-		{
-			Ball ball;
-			ball.currPos = randomVec2f(-1.0f, 1.0f);
-			Vec2f initVelocity = randomVec2f(-1.0f, 1.0f);
-			normalize(initVelocity);
-			ball.prevPos = ball.currPos + (initVelocity * 0.001f);
-			ball.color = randomColor3f();
-			ball.radius = gridWidth / 2.0f;
-			ball.mass = ball.radius * ball.radius;
-			ball.acceleration = { 0.0f, -50.0f };
-			balls[i] = ball;
-		}
+	Simulation();
+	~Simulation();
 
-		sub_dt = deltaTime / stepsPerFrame;
-	}
-
-	~Simulation()
-	{
-		delete[] balls;
-	}
-
-	// Spatial Partitioning
 	cellID getCellIdFromPosition(Simulation& simulation, Vec2f position);
 	unsigned int hashCell(cellID cellId);
 	unsigned int keyFromHash(unsigned int hash, int numCells);
 	void buildSpatialPartition(Simulation& simulation);
 
+	Vec2f getVelocity(Ball& ball);
+	void setVelocity(Ball& ball, Vec2f& velocity);
+	void step();
+	void walls();
+	void collisions();
+	void update();
 };
 

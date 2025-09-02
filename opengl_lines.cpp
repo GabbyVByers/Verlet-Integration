@@ -93,6 +93,6 @@ void OpenGL::renderLines(Simulation& simulation)
 
 	glBufferData(GL_ARRAY_BUFFER, sizeof(LineVertex) * lineVertices.size(), &lineVertices[0], GL_STATIC_DRAW);
 	glUniform2f(glGetUniformLocation(lineShaderProgram, "uScreenDimensions"), (float)simulation.screenWidth, (float)simulation.screenHeight);
-	glDrawArrays(GL_LINES, 0, lineVertices.size());
+	glDrawArrays(GL_LINES, 0, (GLsizei)lineVertices.size());
 }
 

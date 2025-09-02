@@ -63,6 +63,6 @@ void OpenGL::renderCircles(Simulation& simulation)
 	
 	glBufferData(GL_ARRAY_BUFFER, sizeof(CircleVertex) * simulation.numBalls, &circleVertices[0], GL_STATIC_DRAW);
 	glUniform2f(glGetUniformLocation(circleShaderProgram, "uScreenDimensions"), (float)simulation.screenWidth, (float)simulation.screenHeight);
-	glDrawArrays(GL_POINTS, 0, simulation.numBalls);
+	glDrawArrays(GL_POINTS, 0, (GLsizei)simulation.numBalls);
 }
 

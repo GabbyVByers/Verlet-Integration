@@ -11,7 +11,7 @@
 #include <iostream>
 #include <vector>
 
-#include "physics.h"
+#include "simulation.h"
 
 class OpenGL
 {

@@ -27,7 +27,7 @@ int main()
 		renderingTime = renderingProfiler.time();
 		
 		physicsProfiler.start(); {
-			update(simulation);
+			simulation.update();
 		} physicsProfiler.stop();
 		physicsTime = physicsProfiler.time();
 	}

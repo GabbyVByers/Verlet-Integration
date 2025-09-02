@@ -1,7 +1,5 @@
-#pragma once
 
 #include "simulation.h"
-#include "vec2f.h"
 
 cellID Simulation::getCellIdFromPosition(Simulation& simulation, Vec2f position)
 {

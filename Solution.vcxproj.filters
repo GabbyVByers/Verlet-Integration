@@ -19,12 +19,6 @@
     <Filter Include="Modules\OpenGL">
       <UniqueIdentifier>{9a585533-b64e-4189-9113-ccc4f5ae40ef}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Modules\OpenGL\Header File">
-      <UniqueIdentifier>{968ca51c-e3ac-4f4a-9fd0-914cc12760de}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Modules\OpenGL\Source Files">
-      <UniqueIdentifier>{379a52c1-3f1e-491b-a624-3be239fb6a9b}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Modules\OpenGL\Shaders">
       <UniqueIdentifier>{b5464d2d-b28a-470f-835f-58e18288111c}</UniqueIdentifier>
     </Filter>
@@ -63,26 +57,35 @@
     <ClCompile Include="main.cpp">
       <Filter>Main</Filter>
     </ClCompile>
-    <ClCompile Include="opengl_circles.cpp">
-      <Filter>Modules\OpenGL\Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="opengl_lines.cpp">
-      <Filter>Modules\OpenGL\Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="opengl_utilities.cpp">
-      <Filter>Modules\OpenGL\Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="opengl_input.cpp">
-      <Filter>Modules\OpenGL\Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="opengl_gui.cpp">
-      <Filter>Modules\OpenGL\Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="glad.c">
       <Filter>Miscellaneous Dependencies</Filter>
     </ClCompile>
-    <ClCompile Include="profiler.cpp">
+    <ClCompile Include="profiler_members.cpp">
       <Filter>Modules\Profiler</Filter>
+    </ClCompile>
+    <ClCompile Include="simulation_constructor.cpp">
+      <Filter>Modules\Simulation</Filter>
+    </ClCompile>
+    <ClCompile Include="simulation_partition.cpp">
+      <Filter>Modules\Simulation</Filter>
+    </ClCompile>
+    <ClCompile Include="simulation_physics.cpp">
+      <Filter>Modules\Simulation</Filter>
+    </ClCompile>
+    <ClCompile Include="opengl_utilities.cpp">
+      <Filter>Modules\OpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="opengl_lines.cpp">
+      <Filter>Modules\OpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="opengl_input.cpp">
+      <Filter>Modules\OpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="opengl_gui.cpp">
+      <Filter>Modules\OpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="opengl_circles.cpp">
+      <Filter>Modules\OpenGL</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -113,18 +116,6 @@
     <ClInclude Include="imgui\imstb_truetype.h">
       <Filter>Miscellaneous Dependencies\ImGui Headers</Filter>
     </ClInclude>
-    <ClInclude Include="opengl.h">
-      <Filter>Modules\OpenGL\Header File</Filter>
-    </ClInclude>
-    <ClInclude Include="simulation.h">
-      <Filter>Modules\Simulation</Filter>
-    </ClInclude>
-    <ClInclude Include="physics.h">
-      <Filter>Modules\Simulation</Filter>
-    </ClInclude>
-    <ClInclude Include="partition.cpp">
-      <Filter>Modules\Simulation</Filter>
-    </ClInclude>
     <ClInclude Include="vec2f.h">
       <Filter>Modules\Utilities</Filter>
     </ClInclude>
@@ -133,6 +124,12 @@
     </ClInclude>
     <ClInclude Include="profiler.h">
       <Filter>Modules\Profiler</Filter>
+    </ClInclude>
+    <ClInclude Include="simulation.h">
+      <Filter>Modules\Simulation</Filter>
+    </ClInclude>
+    <ClInclude Include="opengl.h">
+      <Filter>Modules\OpenGL</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

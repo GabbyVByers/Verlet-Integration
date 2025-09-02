@@ -33,20 +33,9 @@ OpenGL::~OpenGL()
 	glfwTerminate();
 }
 
-bool OpenGL::isAlive()
-{
-	return !glfwWindowShouldClose(window);
-}
-
-void OpenGL::disableVSYNC()
-{
-	glfwSwapInterval(0);
-}
-
-void OpenGL::enableVSYNC()
-{
-	glfwSwapInterval(1);
-}
+bool OpenGL::isAlive() { return !glfwWindowShouldClose(window); }
+void OpenGL::disableVSYNC() { glfwSwapInterval(0); }
+void OpenGL::enableVSYNC()  { glfwSwapInterval(1); }
 
 void OpenGL::clearScreen(Simulation& simulation)
 {
@@ -65,3 +54,10 @@ void OpenGL::swapBuffers()
 	glfwPollEvents();
 }
 
+std::string OpenGL::loadSourceFile(std::string filePath)
+{
+	std::ifstream shaderFile(filePath);
+	std::stringstream buffer;
+	buffer << shaderFile.rdbuf();
+	return buffer.str();
+}

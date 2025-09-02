@@ -5,11 +5,13 @@
 #include "imgui.h"
 #include "imgui_impl_glfw.h"
 #include "imgui_impl_opengl3.h"
-#include "shader_loader.h"
-#include "physics.h"
 #include <string>
+#include <fstream>
+#include <sstream>
 #include <iostream>
 #include <vector>
+
+#include "physics.h"
 
 class OpenGL
 {
@@ -33,6 +35,7 @@ public:
 	void enableVSYNC();
 	void clearScreen(Simulation& simulation);
 	void swapBuffers();
+	std::string loadSourceFile(std::string filePath);
 
 	// Circle Rendering
 	void initCircleRendering();

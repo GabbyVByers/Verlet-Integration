@@ -85,12 +85,13 @@
     </CudaCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="circle_rendering.cpp" />
-    <ClCompile Include="gui.cpp" />
-    <ClCompile Include="line_rendering.cpp" />
+    <ClCompile Include="opengl_circles.cpp" />
+    <ClCompile Include="opengl_gui.cpp" />
+    <ClCompile Include="opengl_lines.cpp" />
     <ClCompile Include="opengl_utilities.cpp" />
-    <ClCompile Include="user_input.cpp" />
+    <ClCompile Include="opengl_input.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="profiler.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="glad.c" />
@@ -117,7 +118,6 @@
     <ClInclude Include="physics.h" />
     <ClInclude Include="profiler.h" />
     <ClInclude Include="random.h" />
-    <ClInclude Include="shader_loader.h" />
     <ClInclude Include="simulation.h" />
     <ClInclude Include="vec2f.h" />
   </ItemGroup>

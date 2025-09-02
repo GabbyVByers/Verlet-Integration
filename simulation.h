@@ -19,22 +19,21 @@ class Simulation
 {
 public:
 
-	int numBalls = -1;
+	int numBalls = 0;
 	Ball* balls = nullptr;
 
-	float gridWidth = 0.05f;
 	float bounceDampening = 0.99f;
 	int stepsPerFrame = 8;
 	float deltaTime = 0.001f;
 	float sub_dt = 0.0f;
 
 	float max_u = 0.0f;
+	float gridWidth = 0.25f;
 	int screenWidth = -1;
 	int screenHeight = -1;
 
 	Simulation()
 	{
-		numBalls = 1000;
 		balls = new Ball[numBalls];
 		for (int i = 0; i < numBalls; i++)
 		{

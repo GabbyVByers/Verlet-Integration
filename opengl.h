@@ -47,6 +47,7 @@ public:
 	void renderGUI(double renderTime, double physicsTime);
 
 	// User Input
-	void processInput();
+	Vec2f getMousePosition(Simulation& simulation);
+	void processInput(Simulation& simulation);
 };
 

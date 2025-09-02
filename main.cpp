@@ -17,7 +17,7 @@ int main()
 	while (OpenGL.isAlive())
 	{
 		renderingProfiler.start(); {
-			OpenGL.processInput();
+			OpenGL.processInput(simulation);
 			OpenGL.clearScreen(simulation);
 			OpenGL.renderLines(simulation);
 			OpenGL.renderCircles(simulation);

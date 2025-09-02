@@ -104,12 +104,12 @@ inline void collisions(Simulation& simulation)
 			float M1 = ball.mass;
 			float M2 = otherBall.mass;
 			float Mass = M1 + M2;
-
+			
 			Vec2f newV1 = V1 - ((P1 - P2) * (((2.0f * M2) / Mass) * (dot(V1 - V2, P1 - P2) / lengthSquared(P1 - P2))));
 			Vec2f newV2 = V2 - ((P2 - P1) * (((2.0f * M1) / Mass) * (dot(V2 - V1, P2 - P1) / lengthSquared(P2 - P1))));
 			newV1 = newV1 * dampening;
 			newV2 = newV2 * dampening;
-
+			
 			setVelocity(ball, newV1, dt);
 			setVelocity(otherBall, newV2, dt);
 
@@ -133,5 +133,19 @@ inline void update(Simulation& simulation)
 		walls(simulation);
 		collisions(simulation);
 	}
+}
+
+struct cellID
+{
+	int cellX = 0;
+	int cellY = 0;
+};
+
+inline cellID getCellIdFromPosition(Simulation& simulation, Vec2f position)
+{
+	float width = simulation.gridWidth;
+	int cellX = (position.x > 0.0f) ? ((position.x + (width * 0.5f)) / width) : ((position.x - (width * 0.5f)) / width);
+	int cellY = (position.y > 0.0f) ? ((position.y + (width * 0.5f)) / width) : ((position.y - (width * 0.5f)) / width);
+	return { cellX, cellY };
 }
 

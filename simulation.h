@@ -2,8 +2,8 @@
 
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
-#include "vec2f.h"
 #include "random.h"
+#include "profiler.h"
 #include <iostream>
 
 struct Ball
@@ -54,6 +54,15 @@ public:
 	int numUniqueCellKeys = 100000;
 	BallCellKeyPair* ballKeyPairs = nullptr;
 	CellProperties* startIndices = nullptr;
+
+	Profiler simulationProfiler;
+	Profiler partitionProfiler;
+	Profiler ballKeysProfiler;
+	Profiler startIndicesProfiler;
+	Profiler physicsProfiler;
+	Profiler stepProfiler;
+	Profiler wallProfiler;
+	Profiler collisionProfiler;
 
 	Simulation();
 	~Simulation();

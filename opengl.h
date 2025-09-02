@@ -28,6 +28,32 @@ public:
 	unsigned int lineVAO;
 	unsigned int lineVBO;
 
+	Profiler openglProfiler;
+	Profiler inputProfiler;
+	Profiler lineProfiler;
+	Profiler circleProfile;
+	Profiler guiProfiler;
+
+	void update()
+	{
+		openglProfiler.start(); {
+			inputProfiler.start(); {
+				processInput();
+			} inputProfiler.stop();
+			clearScreen();
+			lineProfiler.start(); {
+				renderLines();
+			} lineProfiler.stop();
+			circleProfile.start(); {
+				renderCircles();
+			} circleProfile.stop();
+			guiProfiler.start(); {
+				renderGUI();
+			} guiProfiler.stop();
+			swapBuffers();
+		} openglProfiler.stop();
+	}
+
 	// Utilities
 	OpenGL(int initWidth, int initHeight, std::string title);
 	~OpenGL();
@@ -48,7 +74,7 @@ public:
 
 	// GUI
 	void initImGui() const;
-	void renderGUI(double renderTime, double physicsTime);
+	void renderGUI();
 
 	// User Input
 	Vec2f getMousePosition();

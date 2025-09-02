@@ -22,6 +22,7 @@ unsigned int Simulation::keyFromHash(unsigned int hash)
 
 void Simulation::buildSpatialPartition()
 {
+	ballKeysProfiler.start();
 	for (int i = 0; i < numBalls; i++)
 	{
 		BallCellKeyPair ballCellKey;
@@ -49,7 +50,9 @@ void Simulation::buildSpatialPartition()
 		if (isSorted)
 			break;
 	}
+	ballKeysProfiler.stop();
 
+	startIndicesProfiler.start();
 	for (int i = 0; i < numUniqueCellKeys; i++)
 	{
 		CellProperties cellProperty;
@@ -64,5 +67,6 @@ void Simulation::buildSpatialPartition()
 			cellProperty.startIndex = i;
 		cellProperty.size++;
 	}
+	startIndicesProfiler.stop();
 }
 

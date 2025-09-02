@@ -147,13 +147,25 @@ void Simulation::collisions()
 
 void Simulation::update()
 {
+	simulationProfiler.start();
 	for (int i = 0; i < stepsPerFrame; i++)
 	{
-		if (doSpatialPartitioning)
-			buildSpatialPartition();
-		step();
-		walls();
-		collisions();
+		partitionProfiler.start(); {
+			if (doSpatialPartitioning)
+				buildSpatialPartition();
+		} partitionProfiler.stop();
+		physicsProfiler.start(); {
+			stepProfiler.start(); {
+				step();
+			} stepProfiler.stop();
+			wallProfiler.start(); {
+				walls();
+			} wallProfiler.stop();
+			collisionProfiler.start(); {
+				collisions();
+			} collisionProfiler.stop();
+		} physicsProfiler.stop();
 	}
+	simulationProfiler.stop();
 }
 

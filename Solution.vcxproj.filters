@@ -142,7 +142,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <CudaCompile Include="simulation_partition.cpp">
+    <CudaCompile Include="simulation_partition.cu">
       <Filter>Modules\Simulation</Filter>
     </CudaCompile>
   </ItemGroup>

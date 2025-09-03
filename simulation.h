@@ -6,6 +6,12 @@
 #include "profiler.h"
 #include <iostream>
 
+#include <thrust/execution_policy.h>
+#include <thrust/host_vector.h>
+#include <thrust/device_vector.h>
+#include <thrust/sort.h>
+#include <thrust/copy.h>
+
 struct Ball
 {
 	Vec2f currPos;
@@ -37,7 +43,7 @@ struct CellProperties
 class Simulation
 {
 public:
-	int numBalls = 10000;
+	int numBalls = 16384;
 	Ball* balls = nullptr;
 
 	float bounceDampening = 0.99f;
@@ -50,10 +56,12 @@ public:
 	int screenHeight = -1;
 
 	bool doSpatialPartitioning = true;
-	float gridWidth = 0.02f;
+	float gridWidth = 0.015f;
 	int numUniqueCellKeys = 65535;
 	BallCellKeyPair* ballKeyPairs = nullptr;
 	CellProperties* startIndices = nullptr;
+	thrust::device_vector<unsigned int> device_keys;
+	thrust::host_vector<unsigned int> host_keys;
 
 	Profiler simulationProfiler;
 	Profiler partitionProfiler;

@@ -68,12 +68,16 @@ void Simulation::walls()
 	}
 }
 
-void Simulation::resolveCollision(Ball& ball, Ball& otherBall)
+void Simulation::resolveCollision(int i, int j)
 {
+	Ball& ball = balls[i];
+	Ball& otherBall = balls[j];
+
 	Vec2f difference = ball.currPos - otherBall.currPos;
-	float distance = length(difference);
+	float distanceSquared = lengthSquared(difference);
 	float radiuses = ball.radius + otherBall.radius;
-	if (distance > radiuses) return;
+	if (distanceSquared > (radiuses * radiuses)) return;
+	float distance = sqrt(distanceSquared);
 	if (distance == 0.0f) return;
 
 	Vec2f V1 = getVelocity(ball);
@@ -120,15 +124,14 @@ void Simulation::collisions()
 					neighbourCellId.cellY += offsety;
 
 					unsigned int neighbourCellKey = keyFromHash(hashCell(neighbourCellId));
-					CellProperties cellProperty = startIndices[neighbourCellKey];
+					CellProperties neighbourCellProperty = startIndices[neighbourCellKey];
 
-					for (int j = 0; j < cellProperty.size; j++)
+					for (int j = 0; j < neighbourCellProperty.size; j++)
 					{
-						BallCellKeyPair neighbourBallCellPair = ballKeyPairs[cellProperty.startIndex + j];
+						BallCellKeyPair neighbourBallCellPair = ballKeyPairs[neighbourCellProperty.startIndex + j];
 						int neighbourBallIndex = neighbourBallCellPair.ballIndex;
 						if (i == neighbourBallIndex) continue;
-						Ball& otherBall = balls[neighbourBallIndex];
-						resolveCollision(ball, otherBall);
+						resolveCollision(i, neighbourBallIndex);
 					}
 				}
 			}
@@ -138,8 +141,7 @@ void Simulation::collisions()
 			for (int j = 0; j < numBalls; j++)
 			{
 				if (i == j) continue;
-				Ball& otherBall = balls[j];
-				resolveCollision(ball, otherBall);
+				resolveCollision(i, j);
 			}
 		}
 	}

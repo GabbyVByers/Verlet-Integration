@@ -60,9 +60,6 @@
     <ClCompile Include="simulation_constructor.cpp">
       <Filter>Modules\Simulation</Filter>
     </ClCompile>
-    <ClCompile Include="simulation_partition.cpp">
-      <Filter>Modules\Simulation</Filter>
-    </ClCompile>
     <ClCompile Include="simulation_physics.cpp">
       <Filter>Modules\Simulation</Filter>
     </ClCompile>
@@ -75,13 +72,13 @@
     <ClCompile Include="opengl_input.cpp">
       <Filter>Modules\OpenGL</Filter>
     </ClCompile>
-    <ClCompile Include="opengl_gui.cpp">
-      <Filter>Modules\OpenGL</Filter>
-    </ClCompile>
     <ClCompile Include="opengl_circles.cpp">
       <Filter>Modules\OpenGL</Filter>
     </ClCompile>
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="opengl_gui.cpp">
+      <Filter>Modules\OpenGL</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="imgui\imconfig.h">
@@ -143,5 +140,10 @@
     <None Include="line_shader.vert">
       <Filter>Modules\OpenGL\Shaders</Filter>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <CudaCompile Include="simulation_partition.cpp">
+      <Filter>Modules\Simulation</Filter>
+    </CudaCompile>
   </ItemGroup>
 </Project>

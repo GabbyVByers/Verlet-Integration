@@ -37,7 +37,7 @@ struct CellProperties
 class Simulation
 {
 public:
-	int numBalls = 1700;
+	int numBalls = 10000;
 	Ball* balls = nullptr;
 
 	float bounceDampening = 0.99f;
@@ -50,8 +50,8 @@ public:
 	int screenHeight = -1;
 
 	bool doSpatialPartitioning = true;
-	float gridWidth = 0.05f;
-	int numUniqueCellKeys = 100000;
+	float gridWidth = 0.02f;
+	int numUniqueCellKeys = 65535;
 	BallCellKeyPair* ballKeyPairs = nullptr;
 	CellProperties* startIndices = nullptr;
 
@@ -77,7 +77,7 @@ public:
 	void step();
 	void walls();
 	void collisions();
-	void resolveCollision(Ball& ball, Ball& other);
+	void resolveCollision(int i, int j);
 	void update();
 };
 

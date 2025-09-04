@@ -37,6 +37,14 @@ void OpenGL::renderGUI()
 	ImGui::Text("Simulation          (ms): %g", simulationTime);
 	ImGui::Text("   Partition           (ms): %g", partitionTime * (double)simulation->stepsPerFrame);
 	ImGui::Text("      Ball Keys           (ms): %g", ballKeysTime * (double)simulation->stepsPerFrame);
+	ImGui::Text("         H Size                  : %g", (float)simulation->numMembersOfHost);
+	ImGui::Text("         D Size                  : %g", (float)simulation->numMembersOfDevice);
+	ImGui::Text("         Resize Host         (ms): %g", simulation->time_resizeDeviceKeys * (double)simulation->stepsPerFrame);
+	ImGui::Text("         Construct Unordered (ms): %g", simulation->time_constructingUnorderedBallKeyPairs * (double)simulation->stepsPerFrame);
+	ImGui::Text("         mcpy H->D           (ms): %g", simulation->time_memcpyHostToDevice * (double)simulation->stepsPerFrame);
+	ImGui::Text("         GPU SORT            (ms): %g", simulation->time_GPU_SORT * (double)simulation->stepsPerFrame);
+	ImGui::Text("         mcpy D->H           (ms): %g", simulation->time_memcpyDeviceToHost * (double)simulation->stepsPerFrame);
+	ImGui::Text("         Unpacking           (ms): %g", simulation->time_unpackingSortedBallKeyPairs * (double)simulation->stepsPerFrame);
 	ImGui::Text("      Start Indices       (ms): %g", startIndicesTime * (double)simulation->stepsPerFrame);
 	ImGui::Text("   Physics             (ms): %g", physicsTime * (double)simulation->stepsPerFrame);
 	ImGui::Text("      Step                (ms): %g", stepTime * (double)simulation->stepsPerFrame);

@@ -63,6 +63,17 @@ public:
 	thrust::device_vector<unsigned int> device_keys;
 	thrust::host_vector<unsigned int> host_keys;
 
+	Profiler profiler;
+	double time_resizeHostKeys = 0.0;
+	double time_resizeDeviceKeys = 0.0;
+	double time_constructingUnorderedBallKeyPairs = 0.0;
+	double time_memcpyHostToDevice = 0.0f;
+	double time_GPU_SORT = 0.0f;
+	double time_memcpyDeviceToHost = 0.0f;
+	double time_unpackingSortedBallKeyPairs = 0.0;
+	int numMembersOfHost = 0;
+	int numMembersOfDevice = 0;
+
 	Profiler simulationProfiler;
 	Profiler partitionProfiler;
 	Profiler ballKeysProfiler;

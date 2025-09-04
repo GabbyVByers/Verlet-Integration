@@ -19,7 +19,7 @@ Simulation::Simulation()
 		ball.color = randomColor3f();
 		ball.radius = gridWidth / 2.0f;
 		ball.mass = ball.radius * ball.radius;
-		ball.acceleration = { 0.0f, -50.0f };
+		//ball.acceleration = { 0.0f, -50.0f };
 		balls[i] = ball;
 	}
 

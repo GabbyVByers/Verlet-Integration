@@ -26,9 +26,10 @@ void Simulation::buildSpatialPartition()
 {
 	ballKeysProfiler.start();
 	{
-		host_keys.resize(numBalls);
-		device_keys.resize(numBalls);
+		profiler.start(); host_keys.resize(numBalls); profiler.stop(); time_resizeHostKeys = profiler.time();
+		profiler.start(); device_keys.resize(numBalls); profiler.stop(); time_resizeDeviceKeys = profiler.time();
 
+		profiler.start();
 		for (int i = 0; i < numBalls; i++)
 		{
 			BallCellKeyPair& ballCellKeyPair = ballKeyPairs[i];
@@ -37,11 +38,16 @@ void Simulation::buildSpatialPartition()
 			key = (key << 16);
 			host_keys[i] = (key | ballIndex);
 		}
+		profiler.stop(); time_constructingUnorderedBallKeyPairs = profiler.time();
 
-		thrust::copy(host_keys.begin(), host_keys.end(), device_keys.begin());
-		thrust::sort(device_keys.begin(), device_keys.end());
-		thrust::copy(device_keys.begin(), device_keys.end(), host_keys.begin());
+		numMembersOfHost = host_keys.size();
+		numMembersOfDevice = device_keys.size();
+		profiler.start(); thrust::copy(host_keys.begin(), host_keys.end(), device_keys.begin()); profiler.stop(); time_memcpyHostToDevice = profiler.time();
+		profiler.start(); thrust::sort(device_keys.begin(), device_keys.end()); profiler.stop(); time_GPU_SORT = profiler.time();
+		cudaDeviceSynchronize();
+		profiler.start(); thrust::copy(device_keys.begin(), device_keys.end(), host_keys.begin()); profiler.stop(); time_memcpyDeviceToHost = profiler.time();
 
+		profiler.start();
 		for (int i = 0; i < numBalls; i++)
 		{
 			unsigned int index = host_keys[i] & 0xFFFF;
@@ -50,6 +56,7 @@ void Simulation::buildSpatialPartition()
 			ballCellKey.ballIndex = index;
 			ballCellKey.cellKey = key;
 		}
+		profiler.stop(); time_unpackingSortedBallKeyPairs = profiler.time();
 	}
 	ballKeysProfiler.stop();
 
